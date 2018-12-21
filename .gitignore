@@ -104,3 +104,9 @@ venv.bak/
 .mypy_cache/
 *.exe
 .idea/
+CLexer.py
+CLexer.tokens
+CListener.py
+CParser.py
+CVisitor.py
+C.tokens
