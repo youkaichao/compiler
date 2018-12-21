@@ -17,33 +17,6 @@ class CListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CParser#genericSelection.
-    def enterGenericSelection(self, ctx:CParser.GenericSelectionContext):
-        pass
-
-    # Exit a parse tree produced by CParser#genericSelection.
-    def exitGenericSelection(self, ctx:CParser.GenericSelectionContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#genericAssocList.
-    def enterGenericAssocList(self, ctx:CParser.GenericAssocListContext):
-        pass
-
-    # Exit a parse tree produced by CParser#genericAssocList.
-    def exitGenericAssocList(self, ctx:CParser.GenericAssocListContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#genericAssociation.
-    def enterGenericAssociation(self, ctx:CParser.GenericAssociationContext):
-        pass
-
-    # Exit a parse tree produced by CParser#genericAssociation.
-    def exitGenericAssociation(self, ctx:CParser.GenericAssociationContext):
-        pass
-
-
     # Enter a parse tree produced by CParser#postfixExpression.
     def enterPostfixExpression(self, ctx:CParser.PostfixExpressionContext):
         pass
@@ -89,33 +62,6 @@ class CListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CParser#multiplicativeExpression.
-    def enterMultiplicativeExpression(self, ctx:CParser.MultiplicativeExpressionContext):
-        pass
-
-    # Exit a parse tree produced by CParser#multiplicativeExpression.
-    def exitMultiplicativeExpression(self, ctx:CParser.MultiplicativeExpressionContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#additiveExpression.
-    def enterAdditiveExpression(self, ctx:CParser.AdditiveExpressionContext):
-        pass
-
-    # Exit a parse tree produced by CParser#additiveExpression.
-    def exitAdditiveExpression(self, ctx:CParser.AdditiveExpressionContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#shiftExpression.
-    def enterShiftExpression(self, ctx:CParser.ShiftExpressionContext):
-        pass
-
-    # Exit a parse tree produced by CParser#shiftExpression.
-    def exitShiftExpression(self, ctx:CParser.ShiftExpressionContext):
-        pass
-
-
     # Enter a parse tree produced by CParser#relationalExpression.
     def enterRelationalExpression(self, ctx:CParser.RelationalExpressionContext):
         pass
@@ -131,33 +77,6 @@ class CListener(ParseTreeListener):
 
     # Exit a parse tree produced by CParser#equalityExpression.
     def exitEqualityExpression(self, ctx:CParser.EqualityExpressionContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#andExpression.
-    def enterAndExpression(self, ctx:CParser.AndExpressionContext):
-        pass
-
-    # Exit a parse tree produced by CParser#andExpression.
-    def exitAndExpression(self, ctx:CParser.AndExpressionContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#exclusiveOrExpression.
-    def enterExclusiveOrExpression(self, ctx:CParser.ExclusiveOrExpressionContext):
-        pass
-
-    # Exit a parse tree produced by CParser#exclusiveOrExpression.
-    def exitExclusiveOrExpression(self, ctx:CParser.ExclusiveOrExpressionContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#inclusiveOrExpression.
-    def enterInclusiveOrExpression(self, ctx:CParser.InclusiveOrExpressionContext):
-        pass
-
-    # Exit a parse tree produced by CParser#inclusiveOrExpression.
-    def exitInclusiveOrExpression(self, ctx:CParser.InclusiveOrExpressionContext):
         pass
 
 
@@ -278,57 +197,12 @@ class CListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CParser#storageClassSpecifier.
-    def enterStorageClassSpecifier(self, ctx:CParser.StorageClassSpecifierContext):
-        pass
-
-    # Exit a parse tree produced by CParser#storageClassSpecifier.
-    def exitStorageClassSpecifier(self, ctx:CParser.StorageClassSpecifierContext):
-        pass
-
-
     # Enter a parse tree produced by CParser#typeSpecifier.
     def enterTypeSpecifier(self, ctx:CParser.TypeSpecifierContext):
         pass
 
     # Exit a parse tree produced by CParser#typeSpecifier.
     def exitTypeSpecifier(self, ctx:CParser.TypeSpecifierContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#structOrUnionSpecifier.
-    def enterStructOrUnionSpecifier(self, ctx:CParser.StructOrUnionSpecifierContext):
-        pass
-
-    # Exit a parse tree produced by CParser#structOrUnionSpecifier.
-    def exitStructOrUnionSpecifier(self, ctx:CParser.StructOrUnionSpecifierContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#structOrUnion.
-    def enterStructOrUnion(self, ctx:CParser.StructOrUnionContext):
-        pass
-
-    # Exit a parse tree produced by CParser#structOrUnion.
-    def exitStructOrUnion(self, ctx:CParser.StructOrUnionContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#structDeclarationList.
-    def enterStructDeclarationList(self, ctx:CParser.StructDeclarationListContext):
-        pass
-
-    # Exit a parse tree produced by CParser#structDeclarationList.
-    def exitStructDeclarationList(self, ctx:CParser.StructDeclarationListContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#structDeclaration.
-    def enterStructDeclaration(self, ctx:CParser.StructDeclarationContext):
-        pass
-
-    # Exit a parse tree produced by CParser#structDeclaration.
-    def exitStructDeclaration(self, ctx:CParser.StructDeclarationContext):
         pass
 
 
@@ -341,93 +215,12 @@ class CListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CParser#structDeclaratorList.
-    def enterStructDeclaratorList(self, ctx:CParser.StructDeclaratorListContext):
-        pass
-
-    # Exit a parse tree produced by CParser#structDeclaratorList.
-    def exitStructDeclaratorList(self, ctx:CParser.StructDeclaratorListContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#structDeclarator.
-    def enterStructDeclarator(self, ctx:CParser.StructDeclaratorContext):
-        pass
-
-    # Exit a parse tree produced by CParser#structDeclarator.
-    def exitStructDeclarator(self, ctx:CParser.StructDeclaratorContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#enumSpecifier.
-    def enterEnumSpecifier(self, ctx:CParser.EnumSpecifierContext):
-        pass
-
-    # Exit a parse tree produced by CParser#enumSpecifier.
-    def exitEnumSpecifier(self, ctx:CParser.EnumSpecifierContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#enumeratorList.
-    def enterEnumeratorList(self, ctx:CParser.EnumeratorListContext):
-        pass
-
-    # Exit a parse tree produced by CParser#enumeratorList.
-    def exitEnumeratorList(self, ctx:CParser.EnumeratorListContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#enumerator.
-    def enterEnumerator(self, ctx:CParser.EnumeratorContext):
-        pass
-
-    # Exit a parse tree produced by CParser#enumerator.
-    def exitEnumerator(self, ctx:CParser.EnumeratorContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#enumerationConstant.
-    def enterEnumerationConstant(self, ctx:CParser.EnumerationConstantContext):
-        pass
-
-    # Exit a parse tree produced by CParser#enumerationConstant.
-    def exitEnumerationConstant(self, ctx:CParser.EnumerationConstantContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#atomicTypeSpecifier.
-    def enterAtomicTypeSpecifier(self, ctx:CParser.AtomicTypeSpecifierContext):
-        pass
-
-    # Exit a parse tree produced by CParser#atomicTypeSpecifier.
-    def exitAtomicTypeSpecifier(self, ctx:CParser.AtomicTypeSpecifierContext):
-        pass
-
-
     # Enter a parse tree produced by CParser#typeQualifier.
     def enterTypeQualifier(self, ctx:CParser.TypeQualifierContext):
         pass
 
     # Exit a parse tree produced by CParser#typeQualifier.
     def exitTypeQualifier(self, ctx:CParser.TypeQualifierContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#functionSpecifier.
-    def enterFunctionSpecifier(self, ctx:CParser.FunctionSpecifierContext):
-        pass
-
-    # Exit a parse tree produced by CParser#functionSpecifier.
-    def exitFunctionSpecifier(self, ctx:CParser.FunctionSpecifierContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#alignmentSpecifier.
-    def enterAlignmentSpecifier(self, ctx:CParser.AlignmentSpecifierContext):
-        pass
-
-    # Exit a parse tree produced by CParser#alignmentSpecifier.
-    def exitAlignmentSpecifier(self, ctx:CParser.AlignmentSpecifierContext):
         pass
 
 
@@ -446,42 +239,6 @@ class CListener(ParseTreeListener):
 
     # Exit a parse tree produced by CParser#directDeclarator.
     def exitDirectDeclarator(self, ctx:CParser.DirectDeclaratorContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#gccDeclaratorExtension.
-    def enterGccDeclaratorExtension(self, ctx:CParser.GccDeclaratorExtensionContext):
-        pass
-
-    # Exit a parse tree produced by CParser#gccDeclaratorExtension.
-    def exitGccDeclaratorExtension(self, ctx:CParser.GccDeclaratorExtensionContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#gccAttributeSpecifier.
-    def enterGccAttributeSpecifier(self, ctx:CParser.GccAttributeSpecifierContext):
-        pass
-
-    # Exit a parse tree produced by CParser#gccAttributeSpecifier.
-    def exitGccAttributeSpecifier(self, ctx:CParser.GccAttributeSpecifierContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#gccAttributeList.
-    def enterGccAttributeList(self, ctx:CParser.GccAttributeListContext):
-        pass
-
-    # Exit a parse tree produced by CParser#gccAttributeList.
-    def exitGccAttributeList(self, ctx:CParser.GccAttributeListContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#gccAttribute.
-    def enterGccAttribute(self, ctx:CParser.GccAttributeContext):
-        pass
-
-    # Exit a parse tree produced by CParser#gccAttribute.
-    def exitGccAttribute(self, ctx:CParser.GccAttributeContext):
         pass
 
 
@@ -644,15 +401,6 @@ class CListener(ParseTreeListener):
 
     # Exit a parse tree produced by CParser#statement.
     def exitStatement(self, ctx:CParser.StatementContext):
-        pass
-
-
-    # Enter a parse tree produced by CParser#labeledStatement.
-    def enterLabeledStatement(self, ctx:CParser.LabeledStatementContext):
-        pass
-
-    # Exit a parse tree produced by CParser#labeledStatement.
-    def exitLabeledStatement(self, ctx:CParser.LabeledStatementContext):
         pass
 
 

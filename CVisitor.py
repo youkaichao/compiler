@@ -14,21 +14,6 @@ class CVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CParser#genericSelection.
-    def visitGenericSelection(self, ctx:CParser.GenericSelectionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#genericAssocList.
-    def visitGenericAssocList(self, ctx:CParser.GenericAssocListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#genericAssociation.
-    def visitGenericAssociation(self, ctx:CParser.GenericAssociationContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by CParser#postfixExpression.
     def visitPostfixExpression(self, ctx:CParser.PostfixExpressionContext):
         return self.visitChildren(ctx)
@@ -54,21 +39,6 @@ class CVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CParser#multiplicativeExpression.
-    def visitMultiplicativeExpression(self, ctx:CParser.MultiplicativeExpressionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#additiveExpression.
-    def visitAdditiveExpression(self, ctx:CParser.AdditiveExpressionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#shiftExpression.
-    def visitShiftExpression(self, ctx:CParser.ShiftExpressionContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by CParser#relationalExpression.
     def visitRelationalExpression(self, ctx:CParser.RelationalExpressionContext):
         return self.visitChildren(ctx)
@@ -76,21 +46,6 @@ class CVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by CParser#equalityExpression.
     def visitEqualityExpression(self, ctx:CParser.EqualityExpressionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#andExpression.
-    def visitAndExpression(self, ctx:CParser.AndExpressionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#exclusiveOrExpression.
-    def visitExclusiveOrExpression(self, ctx:CParser.ExclusiveOrExpressionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#inclusiveOrExpression.
-    def visitInclusiveOrExpression(self, ctx:CParser.InclusiveOrExpressionContext):
         return self.visitChildren(ctx)
 
 
@@ -159,33 +114,8 @@ class CVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CParser#storageClassSpecifier.
-    def visitStorageClassSpecifier(self, ctx:CParser.StorageClassSpecifierContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by CParser#typeSpecifier.
     def visitTypeSpecifier(self, ctx:CParser.TypeSpecifierContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#structOrUnionSpecifier.
-    def visitStructOrUnionSpecifier(self, ctx:CParser.StructOrUnionSpecifierContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#structOrUnion.
-    def visitStructOrUnion(self, ctx:CParser.StructOrUnionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#structDeclarationList.
-    def visitStructDeclarationList(self, ctx:CParser.StructDeclarationListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#structDeclaration.
-    def visitStructDeclaration(self, ctx:CParser.StructDeclarationContext):
         return self.visitChildren(ctx)
 
 
@@ -194,53 +124,8 @@ class CVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CParser#structDeclaratorList.
-    def visitStructDeclaratorList(self, ctx:CParser.StructDeclaratorListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#structDeclarator.
-    def visitStructDeclarator(self, ctx:CParser.StructDeclaratorContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#enumSpecifier.
-    def visitEnumSpecifier(self, ctx:CParser.EnumSpecifierContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#enumeratorList.
-    def visitEnumeratorList(self, ctx:CParser.EnumeratorListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#enumerator.
-    def visitEnumerator(self, ctx:CParser.EnumeratorContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#enumerationConstant.
-    def visitEnumerationConstant(self, ctx:CParser.EnumerationConstantContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#atomicTypeSpecifier.
-    def visitAtomicTypeSpecifier(self, ctx:CParser.AtomicTypeSpecifierContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by CParser#typeQualifier.
     def visitTypeQualifier(self, ctx:CParser.TypeQualifierContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#functionSpecifier.
-    def visitFunctionSpecifier(self, ctx:CParser.FunctionSpecifierContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#alignmentSpecifier.
-    def visitAlignmentSpecifier(self, ctx:CParser.AlignmentSpecifierContext):
         return self.visitChildren(ctx)
 
 
@@ -251,26 +136,6 @@ class CVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by CParser#directDeclarator.
     def visitDirectDeclarator(self, ctx:CParser.DirectDeclaratorContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#gccDeclaratorExtension.
-    def visitGccDeclaratorExtension(self, ctx:CParser.GccDeclaratorExtensionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#gccAttributeSpecifier.
-    def visitGccAttributeSpecifier(self, ctx:CParser.GccAttributeSpecifierContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#gccAttributeList.
-    def visitGccAttributeList(self, ctx:CParser.GccAttributeListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#gccAttribute.
-    def visitGccAttribute(self, ctx:CParser.GccAttributeContext):
         return self.visitChildren(ctx)
 
 
@@ -361,11 +226,6 @@ class CVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by CParser#statement.
     def visitStatement(self, ctx:CParser.StatementContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CParser#labeledStatement.
-    def visitLabeledStatement(self, ctx:CParser.LabeledStatementContext):
         return self.visitChildren(ctx)
 
 
