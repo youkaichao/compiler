@@ -40,6 +40,8 @@ postfixExpression
     :   primaryExpression
     |   postfixExpression '[' expression ']'
     |   postfixExpression '(' argumentExpressionList? ')'
+    |   postfixExpression '++'
+    |   postfixExpression '--'
     |   '(' typeName ')' '{' initializerList '}'
     |   '(' typeName ')' '{' initializerList ',' '}'
     ;
@@ -62,8 +64,8 @@ unaryOperator
 
 castExpression
     :   unaryExpression
-    |   Identifier '-' Identifier
     |   DigitSequence // for
+    |   Identifier '-' Identifier
     ;
 
 relationalExpression
@@ -90,8 +92,13 @@ logicalOrExpression
     |   logicalOrExpression '||' logicalAndExpression
     ;
 
+conditionalExpression
+    :   logicalOrExpression ('?'  ':' conditionalExpression)?
+    ;
+
 assignmentExpression
-    :   unaryExpression assignmentOperator assignmentExpression
+    :   conditionalExpression
+    |   unaryExpression assignmentOperator assignmentExpression
     |   DigitSequence // for
     ;
 
@@ -104,9 +111,14 @@ expression
     |   expression ',' assignmentExpression
     ;
 
+constantExpression
+    :   conditionalExpression
+    ;
+
 declaration
     :   declarationSpecifiers initDeclaratorList ';'
 	| 	declarationSpecifiers ';'
+    |   staticAssertDeclaration
     ;
 
 declarationSpecifiers
@@ -148,6 +160,7 @@ typeSpecifier
     |   '__m128d'
     |   '__m128i')
     |   '__extension__' '(' ('__m128' | '__m128d' | '__m128i') ')'
+    |   typedefName
     |   typeSpecifier pointer
     ;
 
@@ -238,6 +251,10 @@ directAbstractDeclarator
     |   directAbstractDeclarator '(' parameterTypeList? ')'
     ;
 
+typedefName
+    :   Identifier
+    ;
+
 initializer
     :   assignmentExpression
     |   '{' initializerList '}'
@@ -245,8 +262,26 @@ initializer
     ;
 
 initializerList
-    :   initializer
-    |   initializerList ',' initializer
+    :   designation? initializer
+    |   initializerList ',' designation? initializer
+    ;
+
+designation
+    :   designatorList '='
+    ;
+
+designatorList
+    :   designator
+    |   designatorList designator
+    ;
+
+designator
+    :   '[' constantExpression ']'
+    |   '.' Identifier
+    ;
+
+staticAssertDeclaration
+    :   '_Static_assert' '(' constantExpression ',' StringLiteral+ ')' ';'
     ;
 
 statement
@@ -255,6 +290,7 @@ statement
     |   selectionStatement
     |   iterationStatement
     |   jumpStatement
+    |   ('__asm' | '__asm__') ('volatile' | '__volatile__') '(' (logicalOrExpression (',' logicalOrExpression)*)? (':' (logicalOrExpression (',' logicalOrExpression)*)?)* ')' ';'
     ;
 
 compoundStatement
