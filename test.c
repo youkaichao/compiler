@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<string.h>
+int printf(const char *format,...);
+int strlen(const char * s);
 
 char s[] = "abcdefgabdef";
 char t[] = "ab";
@@ -41,10 +41,10 @@ int main()
     computeNext();
     int length_s = strlen(s);
     int length_t = strlen(t);
-    if(length_t != 0)
+    if(length_t == 0)
     {
         printf("empty template string!");
-        return;
+        return 0;
     }
     int index_t = 0;
     for(int index_s = 0; index_s < length_s; )
