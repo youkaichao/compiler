@@ -137,8 +137,8 @@ class ToJSVisitor(CVisitor):
         if ctx.assignmentExpression():
             return self.visit(ctx.assignmentExpression())
         if ctx.initializerList():
-            return '{' + ', '.join([self.visit(x) for x in ctx.initializerList()]) + '}'
-        return '{}'
+            return '[' + self.visit(ctx.initializerList()) + ']'
+        return '[]'
 
     def visitStatement(self, ctx):
         if ctx.compoundStatement():
@@ -174,6 +174,15 @@ class ToJSVisitor(CVisitor):
 
     def visitTerminal(self, node):
         return node.getText()
+
+    def visitInitializerList(self, ctx: CParser.InitializerListContext):
+        return ', '.join([self.visit(x) for x in ctx.initializer()])
+
+    def visitParameterList(self, ctx: CParser.ParameterListContext):
+        return ', '.join([self.visit(x) for x in ctx.parameterDeclaration()])
+
+    def visitParameterDeclaration(self, ctx: CParser.ParameterDeclarationContext):
+        return self.visit(ctx.typeSpecifier()) + ' ' + self.visit(ctx.declarator())
 
 def main(argv):
     input = FileStream('test.c' if len(argv) <= 1 else argv[1])

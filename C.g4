@@ -56,6 +56,8 @@ statement
 
 forDeclaration :   typeSpecifier initDeclaratorList;
 
+/* forExpression is the same as expression, but just for simplicity we rename it forExpression.
+(so that every statement has at most 1 expression) */
 forExpression :   assignmentExpression (',' assignmentExpression)*;
 
 compoundStatement
@@ -133,8 +135,6 @@ parameterTypeList :   parameterList (',' '...')? ;
 parameterList :   parameterDeclaration (',' parameterDeclaration)* ;
 
 parameterDeclaration :   typeSpecifier declarator ;
-
-identifierList :   Identifier (',' Identifier)* ;
 
 initializer
     :   assignmentExpression
