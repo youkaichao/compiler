@@ -38,10 +38,9 @@ typeSpecifier
     ;
 
 declarator
-    :   Identifier
-    |   Identifier '[' assignmentExpression? ']'
-    |   Identifier '(' parameterTypeList ')'
-    |   Identifier '(' identifierList? ')'
+    :   Identifier      # pureIdentifier
+    |   Identifier '[' assignmentExpression? ']'       # arrayIdentifier
+    |   Identifier '(' parameterTypeList? ')' /* function definition or function declaration */    # functionDefinitionOrDeclaration
     ;
 
 statement
@@ -90,15 +89,14 @@ primaryExpression
 postfixExpression
     :   primaryExpression
     |   postfixExpression '[' expression ']'
-    |   postfixExpression '(' argumentExpressionList? ')'
+    |   postfixExpression '(' expression? ')'
     ;
-
-argumentExpressionList  :   assignmentExpression (',' assignmentExpression)* ;
 
 castExpression
     :   unaryExpression
     |   DigitSequence // for
-    |   Identifier '-' Identifier
+    |   castExpression '-' castExpression
+    |   castExpression '+' castExpression
     ;
 
 unaryExpression
@@ -140,7 +138,7 @@ identifierList :   Identifier (',' Identifier)* ;
 
 initializer
     :   assignmentExpression
-    |   '{' initializerList ','? '}'
+    |   '{' initializerList? ','? '}'
     ;
 
 initializerList

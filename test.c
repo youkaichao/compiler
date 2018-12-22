@@ -11,7 +11,7 @@ void computeNext()
     int length_t = strlen(t);
     int index_t = 0;
     next[index_t] = 0;
-    for(int index_moving = 1; index_moving < length_t; ++index_moving)
+    for(int index_moving = 1; index_moving < length_t + 1; ++index_moving)
     {
         while(index_moving < length_t && index_t < length_t && t[index_moving] == t[index_t])
         {
@@ -43,7 +43,7 @@ int main()
     int length_t = strlen(t);
     if(length_t == 0)
     {
-        printf("empty template string!");
+        printf("empty template string!\n");
         return 0;
     }
     int index_t = 0;
