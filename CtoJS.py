@@ -191,8 +191,10 @@ def main(argv):
     parser = CParser(stream)
     tree = parser.compilationUnit()
     ans = ToJSVisitor().visit(tree)
+    outfile = open('test.js' if len(argv) <= 1 else argv[1].split('.')[0]+'.js', 'w')
+    outfile.write(ans)
+    outfile.close()
     print(ans)
-
 
 if __name__ == '__main__':
     main(sys.argv)
