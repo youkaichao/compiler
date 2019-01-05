@@ -97,8 +97,8 @@ postfixExpression
 castExpression
     :   unaryExpression
     |   DigitSequence // for
-    |   castExpression '-' castExpression
-    |   castExpression '+' castExpression
+    |   castExpression ('*' | '/') castExpression
+    |   castExpression ('-' | '+') castExpression
     ;
 
 unaryExpression
@@ -110,6 +110,9 @@ unaryExpression
 relationalExpression
     :   castExpression
     |   castExpression '<' castExpression
+    |   castExpression '<=' castExpression
+    |   castExpression '>' castExpression
+    |   castExpression '>=' castExpression
     ;
 
 equalityExpression
@@ -123,8 +126,14 @@ logicalAndExpression
     |   logicalAndExpression '&&' equalityExpression
     ;
 
+logicalOrExpression
+    :   equalityExpression
+    |   logicalOrExpression '||' equalityExpression
+    ;
+
 assignmentExpression
     :   logicalAndExpression
+    |   logicalOrExpression
     |   unaryExpression '=' assignmentExpression
     ;
 
@@ -155,7 +164,7 @@ Constant:   [1-9] [0-9]*;
 
 DigitSequence:   [0-9]+;
 
-StringLiteral:   '"' SCharSequence? '"';
+StringLiteral:   '"' SCharSequence? '"' | '\'' SChar '\'';
 
 fragment
 SCharSequence:   SChar+;
@@ -163,7 +172,7 @@ SCharSequence:   SChar+;
 fragment
 SChar
     :   ~["\\\r\n]
-    |   '\\' ['"?abfnrtv\\]
+    |   '\\' ['"?abfnrtv0\\]
     |   '\\\n'   // Added line
     |   '\\\r\n' // Added line
     ;

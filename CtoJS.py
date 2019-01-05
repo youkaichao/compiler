@@ -24,7 +24,7 @@ class ToJSVisitor(CVisitor):
     def visitTypeSpecifier(self, ctx):
         if ctx.CONST():
             return 'const'
-        return 'let'
+        return 'var'
 
     def visitPureIdentifier(self, ctx:CParser.PureIdentifierContext):
         return ctx.Identifier().getText()
@@ -52,12 +52,20 @@ class ToJSVisitor(CVisitor):
     def visitAssignmentExpression(self, ctx:CParser.AssignmentExpressionContext):
         if ctx.logicalAndExpression():
             return self.visit(ctx.logicalAndExpression())
+        if ctx.logicalOrExpression():
+            return self.visit(ctx.logicalOrExpression())
         else:
             return self.visit(ctx.unaryExpression()) + ' = ' + self.visit(ctx.assignmentExpression())
 
     def visitLogicalAndExpression(self, ctx:CParser.LogicalAndExpressionContext):
         if ctx.logicalAndExpression():
             return self.visit(ctx.logicalAndExpression()) + ' && ' + self.visit(ctx.equalityExpression())
+        else:
+            return self.visit(ctx.equalityExpression())
+
+    def visitLogicalOrExpression(self, ctx:CParser.LogicalOrExpressionContext):
+        if ctx.logicalOrExpression():
+            return self.visit(ctx.logicalOrExpression()) + ' || ' + self.visit(ctx.equalityExpression())
         else:
             return self.visit(ctx.equalityExpression())
 
@@ -75,7 +83,7 @@ class ToJSVisitor(CVisitor):
 
     def visitRelationalExpression(self, ctx:CParser.RelationalExpressionContext):
         if len(ctx.children) > 1:
-            return self.visit(ctx.castExpression(0)) + ' < ' + self.visit(ctx.castExpression(1))
+            return self.visit(ctx.castExpression(0)) + ' ' + ctx.children[1].getText() + ' ' + self.visit(ctx.castExpression(1))
         else:
             return self.visit(ctx.castExpression(0))
 
@@ -100,13 +108,23 @@ class ToJSVisitor(CVisitor):
         functionName = ctx.postfixExpression().getText()
         if functionName == 'strlen':
             return f'{self.visit(ctx.expression())}.length'
+        if functionName == 'initStack':
+            return 'new Array()'
+        args = ctx.expression().assignmentExpression()
+        args = [self.visit(x) for x in args]
         if functionName == 'printf':
             # printf doesn't append a newline but console
-            args = ctx.expression().assignmentExpression()
-            args = [self.visit(x) for x in args]
             if args[0].endswith('\\n\"'):
                 args[0] = args[0][:-3] + '"'
             return f'console.log({", ".join(args)})'
+        if functionName == 'push':
+            return f'{args[0]}.push({args[1]})'
+        if functionName == 'pop':
+            return f'{args[0]}.pop()'
+        if functionName == 'getTop':
+            return f'{args[0]}[{args[0]}.length - 1]'
+        if functionName == 'stackEmpty':
+            return f'({args[0]}.length == 0)'
         if ctx.expression():
             return f'{ctx.postfixExpression().getText()}({self.visit(ctx.expression())})'
         return f'{ctx.postfixExpression().getText()}()'
@@ -178,11 +196,17 @@ class ToJSVisitor(CVisitor):
     def visitInitializerList(self, ctx: CParser.InitializerListContext):
         return ', '.join([self.visit(x) for x in ctx.initializer()])
 
+    def visitParameterTypeList(self, ctx: CParser.ParameterTypeListContext):
+        return ', '.join([self.visitParameterDeclaration2(x) for x in ctx.parameterList().parameterDeclaration()])
+
     def visitParameterList(self, ctx: CParser.ParameterListContext):
         return ', '.join([self.visit(x) for x in ctx.parameterDeclaration()])
 
     def visitParameterDeclaration(self, ctx: CParser.ParameterDeclarationContext):
         return self.visit(ctx.typeSpecifier()) + ' ' + self.visit(ctx.declarator())
+
+    def visitParameterDeclaration2(self, ctx: CParser.ParameterDeclarationContext):
+        return self.visit(ctx.declarator())
 
 def main(argv):
     input = FileStream('test.c' if len(argv) <= 1 else argv[1])
