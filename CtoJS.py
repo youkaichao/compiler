@@ -207,7 +207,7 @@ def main(argv):
     parser = CParser(stream)
     tree = parser.compilationUnit()
     ans = ToJSVisitor().visit(tree)
-    outfile = open('test.js' if len(argv) <= 1 else argv[1].split('.')[0]+'.js', 'w')
+    outfile = open('test.js' if len(argv) <= 2 else argv[2], 'w', encoding='utf-8')
     outfile.write(ans)
     outfile.close()
     print(ans)
