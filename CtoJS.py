@@ -13,9 +13,11 @@ class ToJSVisitor(CVisitor):
     def visitCompilationUnit(self, ctx):
         ans = [self.visit(i) for i in ctx.children[:-1]]
         ans = [x for x in ans if x]
-        return '\n'.join(ans) + '\nmain()\n'
+        return '\n'.join(ans) + '\nmain();\n'
 
     def visitFunctionDefinition(self, ctx):
+        if ctx.declarator().Identifier().getText() in ['initStack', 'printf', 'push', 'pop', 'getTop', 'stackEmpty']:
+            return ''
         ans = 'function'
         ans += ' ' + self.visit(ctx.declarator())
         ans += ' ' + self.visit(ctx.compoundStatement())
@@ -24,7 +26,7 @@ class ToJSVisitor(CVisitor):
     def visitTypeSpecifier(self, ctx):
         if ctx.CONST():
             return 'const'
-        return 'var'
+        return 'let'
 
     def visitPureIdentifier(self, ctx:CParser.PureIdentifierContext):
         return ctx.Identifier().getText()
@@ -124,7 +126,7 @@ class ToJSVisitor(CVisitor):
         if functionName == 'getTop':
             return f'{args[0]}[{args[0]}.length - 1]'
         if functionName == 'stackEmpty':
-            return f'({args[0]}.length == 0)'
+            return f'({args[0]}.length === 0 ? 1 : 0)'
         if ctx.expression():
             return f'{ctx.postfixExpression().getText()}({self.visit(ctx.expression())})'
         return f'{ctx.postfixExpression().getText()}()'
@@ -168,7 +170,7 @@ class ToJSVisitor(CVisitor):
             if_statements = f'if({self.visit(ctx.expression())})' + self.visit(ctx.statement(0))
             else_statement = ''
             if len(ctx.children) > 5:
-                else_statement = 'else\n' + self.visit(ctx.statement(1))
+                else_statement = '\nelse' + self.visit(ctx.statement(1))
             return if_statements + else_statement
         if txt == 'while':
             return f'while({self.visit(ctx.expression())})' + self.visit(ctx.statement(0))

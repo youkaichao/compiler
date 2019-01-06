@@ -1,10 +1,77 @@
 int strlen(const char* s);
 int printf(const char *format,...);
-int* initStack(int* len);
-void push(int* stack, int tar);
-int pop(int* stack);
-int stackEmpty(int* stack);
-int getTop(int* stack);
+
+int stackData[5000 * 2];
+int stackNo = 0;
+int initStack() {
+    if (stackNo >= 2) {
+        return 666;
+    }
+    if (stackNo < 0) {
+        return 666;
+    }
+    int ans = stackNo;
+    stackNo = stackNo + 1;
+    stackData[5000 * stackNo] = 0;
+    return ans;
+}
+void push(int stack, int tar) {
+    if (stack >= 2) {
+        return;
+    }
+    if (stack < 0) {
+        return;
+    }
+    int length = stackData[stack * 5000];
+    if (length < 0) {
+        return;
+    }
+    if (length >= 4999) {
+        return;
+    }
+    stackData[stack * 5000 + length + 1] = tar;
+    stackData[stack * 5000] = length + 1;
+}
+int pop(int stack) {
+    if (stack >= 2) {
+        return 0;
+    }
+    if (stack < 0) {
+        return 0;
+    }
+    int length = stackData[stack * 5000];
+    if (length <= 0) {
+        return 0;
+    }
+    stackData[stack * 5000] = length - 1;
+    return stackData[stack * 5000 + length];
+}
+int stackEmpty(int stack) {
+    if (stack >= 2) {
+        return 1;
+    }
+    if (stack < 0) {
+        return 1;
+    }
+    int length = stackData[stack * 5000];
+    if (length == 0) {
+        return 1;
+    }
+    return 0;
+}
+int getTop(int stack) {
+    if (stack >= 2) {
+        return 0;
+    }
+    if (stack < 0) {
+        return 0;
+    }
+    int length = stackData[stack * 5000];
+    if (length <= 0) {
+        return 0;
+    }
+    return stackData[stack * 5000 + length];
+}
 
 char str[] = "5+6*(3+2)-1";
 
@@ -25,14 +92,14 @@ int Priority(int s)
 
 int main()
 {
-    int* num = initStack();
-    int* opt = initStack();
+    int num = initStack();
+    int opt = initStack();
     int i = 0;
     int tmp = 0;
     int j;
     int strlen_t = strlen(str);
 
-    while (stackEmpty(opt) != true || i < strlen_t)
+    while (stackEmpty(opt) != 1 || i < strlen_t)
     {
         if(str[i] >= '0' && str[i] <= '9')
         {
@@ -66,7 +133,7 @@ int main()
                 continue;
             }
             int ok = 0;
-            if (stackEmpty(opt) != true && str[i] == '\0') {
+            if (stackEmpty(opt) != 1 && str[i] == '\0') {
                 ok = 1;
             }
             if(str[i] == ')' && getTop(opt) != '(') {

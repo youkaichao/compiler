@@ -109,10 +109,7 @@ unaryExpression
 
 relationalExpression
     :   castExpression
-    |   castExpression '<' castExpression
-    |   castExpression '<=' castExpression
-    |   castExpression '>' castExpression
-    |   castExpression '>=' castExpression
+    |   castExpression ('<' | '<=' | '>' | '>=') castExpression
     ;
 
 equalityExpression
