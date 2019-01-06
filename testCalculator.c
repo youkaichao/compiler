@@ -12,7 +12,7 @@ int initStack() {
     }
     int ans = stackNo;
     stackNo = stackNo + 1;
-    stackData[5000 * stackNo] = 0;
+    stackData[5000 * ans] = 0;
     return ans;
 }
 void push(int stack, int tar) {

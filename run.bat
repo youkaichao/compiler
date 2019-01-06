@@ -1,1 +1,1 @@
-antlr4 -no-listener -visitor -Dlanguage=Python3 C.g4 && python CtoJS.py testCalculator.c
+antlr4 -no-listener -visitor -Dlanguage=Python3 C.g4 && python CtoJS.py

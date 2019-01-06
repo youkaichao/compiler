@@ -16,8 +16,6 @@ class ToJSVisitor(CVisitor):
         return '\n'.join(ans) + '\nmain();\n'
 
     def visitFunctionDefinition(self, ctx):
-        if ctx.declarator().Identifier().getText() in ['initStack', 'printf', 'push', 'pop', 'getTop', 'stackEmpty']:
-            return ''
         ans = 'function'
         ans += ' ' + self.visit(ctx.declarator())
         ans += ' ' + self.visit(ctx.compoundStatement())
@@ -110,23 +108,15 @@ class ToJSVisitor(CVisitor):
         functionName = ctx.postfixExpression().getText()
         if functionName == 'strlen':
             return f'{self.visit(ctx.expression())}.length'
-        if functionName == 'initStack':
-            return 'new Array()'
-        args = ctx.expression().assignmentExpression()
-        args = [self.visit(x) for x in args]
+        args = ctx.expression()
+        if args:
+            args = args.assignmentExpression()
+            args = [self.visit(x) for x in args]
         if functionName == 'printf':
             # printf doesn't append a newline but console
             if args[0].endswith('\\n\"'):
                 args[0] = args[0][:-3] + '"'
             return f'console.log({", ".join(args)})'
-        if functionName == 'push':
-            return f'{args[0]}.push({args[1]})'
-        if functionName == 'pop':
-            return f'{args[0]}.pop()'
-        if functionName == 'getTop':
-            return f'{args[0]}[{args[0]}.length - 1]'
-        if functionName == 'stackEmpty':
-            return f'({args[0]}.length === 0 ? 1 : 0)'
         if ctx.expression():
             return f'{ctx.postfixExpression().getText()}({self.visit(ctx.expression())})'
         return f'{ctx.postfixExpression().getText()}()'
